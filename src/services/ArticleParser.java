@@ -2,6 +2,7 @@ package services;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import services.exceptions.ArticleParsingException;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -24,8 +25,7 @@ public class ArticleParser {
             this.articleTitle = title;
             return article;
         } catch (IOException e) {
-            e.printStackTrace();
-            return "Error fetching article.";
+            throw new ArticleParsingException("Error parsing article", e);
         }
     }
 }
